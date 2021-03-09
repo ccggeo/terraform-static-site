@@ -37,5 +37,11 @@ $ terraform apply
 | name_servers | Name Servers of Route53 zone |
 | cloudfront_hostname | cloudfront hostname which has deployed your site|
 
+### Tests and linting
+Setup linting environment on mac with 
+```make mac-lint```
+Initiate linting with
+```make lint```
+
 ### Versioning
 I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 

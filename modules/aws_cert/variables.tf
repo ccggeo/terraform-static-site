@@ -1,12 +1,10 @@
 variable "aliases" {
-  type    = list(any)
-  default = []
-}
-
-variable "domain" {
-  type = string
+  description = "Aliases associated with Cloudfront distribution"
+  type        = list(any)
+  default     = []
 }
 
 variable "zone_id" {
-  type = string
+  description = "Id of the r53 domain"
+  type        = string
 }
