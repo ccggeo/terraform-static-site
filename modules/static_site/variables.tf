@@ -9,16 +9,13 @@ variable "root_document" {
 }
 
 variable "s3_origin_id" {
-  type    = string
-  default = "myS3Origin"
-}
-
-variable "aws_cert_val"{}
-
-variable "environment"{
+  description = "Name of the s3 Origin user for CF"
+  type        = string
+  default     = "myS3Origin"
 }
 
 variable "aliases" {
-  type    = list(any)
-  default = []
+  description = "Aliases associated with Cloudfront distribution"
+  type        = list(any)
+  default     = []
 }

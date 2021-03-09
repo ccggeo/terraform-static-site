@@ -1,9 +1,11 @@
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
-  comment = "Block access to everyone except CF"
+  comment  = "Block access to everyone except CF"
+  provider = aws.west
 }
 
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
+  #tfsec:ignore:AWS045
   origin {
     domain_name = aws_s3_bucket.origin_bucket.bucket_regional_domain_name
     origin_id   = var.s3_origin_id
@@ -17,7 +19,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment             = "Deploy static site behind Cloudfront"
   default_root_object = var.root_document
 
-  # if logging 
   logging_config {
     include_cookies = false
     bucket          = aws_s3_bucket.origin_bucket_logs.bucket_domain_name
@@ -39,7 +40,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -82,11 +83,9 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn =  var.aws_cert_val 
-    ssl_support_method  = "sni-only"
+    acm_certificate_arn      = var.aws_cert_val
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2019"
   }
 }
 
-output "cloudfront_hostname" {
-  value = aws_cloudfront_distribution.s3_distribution.domain_name
-}
