@@ -29,7 +29,6 @@ $ terraform apply
 | r53 | terraform-aws-route53 |  |
 
 
-
 ## Outputs 
 | Name | Description |
 |------|-------------|
@@ -45,3 +44,4 @@ Initiate linting with
 
 ### Versioning
 I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Current stable version is v1.1.0
